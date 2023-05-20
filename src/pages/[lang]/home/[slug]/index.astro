@@ -1,0 +1,14 @@
+---
+const { slug } = Astro.params;
+let langage = 1;
+const url = new URL(Astro.request.url);
+const pathName = url.pathname;
+if (pathName) {
+	if (pathName.includes("en")) {
+		langage = 2;
+	}
+}
+---
+
+<h1>{slug}</h1>
+<h1>{langage}</h1>
