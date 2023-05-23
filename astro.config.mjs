@@ -6,31 +6,10 @@ import node from "@astrojs/node";
 export default defineConfig({
   output: "server",
   adapter: node({
-    mode: "middleware",
+    mode: "standalone",
   }),
-  server: { port: 80, host: '0.0.0.0' },
-  vite: {
-    server: {
-      proxy: {
-        '/trang-chu': {
-          target: '/',
-          secure: false,
-          changeOrigin: false,
-          rewrite: (path) => {
-            path = path.replace('trang-chu', 'home');
-            return path;
-          },
-        },
-        '/en/home-page': {
-          target: '/',
-          secure: false,
-          changeOrigin: false,
-          rewrite: (path) => {
-            path = path.replace('home-page', 'home');
-            return path;
-          },
-        }
-      }
-    }
+  server: {
+    port: 3000,
+    host: true
   }
 });

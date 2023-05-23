@@ -1,14 +1,27 @@
 ---
-import Card from "../../components/Card.astro";
-import Layout from "../../layouts/Layout.astro";
+import Card from "../../../components/Card.astro";
+import Layout from "../../../layouts/Layout.astro";
+const { slug } = Astro.params;
+let langage = 1;
+const url = new URL(Astro.request.url);
+const pathName = url.pathname;
+if (pathName) {
+	if (pathName.includes("en")) {
+		langage = 2;
+	}
+}
 ---
 
 <Layout title="Welcome to Astro.">
+	<h1>{slug}</h1>
+	<h1>{langage}</h1>
 	<main>
 		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
 		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
+			To get started, open the directory <code>src/pages</code> in your project.<br
+			/>
+			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message
+			above.
 		</p>
 		<ul role="list" class="link-card-grid">
 			<Card
